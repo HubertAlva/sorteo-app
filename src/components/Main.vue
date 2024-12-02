@@ -57,6 +57,7 @@ const getWinners = () => {
 
 const clear = () => {
   participants.value = []
+  winnersLimit.value = 1
   winners.value = []
   emit('clear')
 }
