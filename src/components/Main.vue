@@ -112,6 +112,6 @@ const clear = () => {
   </section>
 
   <div class="flex justify-end">
-    <Button @click="clear()">Limpiar</Button>
+    <Button variant="secondary" @click="clear()">Limpiar</Button>
   </div>
 </template>
