@@ -26,22 +26,6 @@ const winnersLimit = ref(1)
 
 const winners = ref<string[]>([])
 
-const handlePaste = (event: ClipboardEvent) => {
-  const pasteData = event.clipboardData?.getData('text')
-  if (pasteData) {
-    const newTags = pasteData
-      .split(',')
-      .map((tag) => tag.trim())
-      .filter((tag) => tag)
-    newTags.forEach((tag) => {
-      if (!participants.value.includes(tag)) {
-        participants.value.push(tag)
-      }
-    })
-    event.preventDefault()
-  }
-}
-
 const getWinners = () => {
   if (participants.value.length === 0) {
     alert('No hay participantes')
@@ -61,6 +45,8 @@ const clear = () => {
   winners.value = []
   emit('clear')
 }
+
+const cleanParticipants = (participants: string[]) => participants.filter((p) => p.trim() !== '')
 </script>
 
 <template>
@@ -68,13 +54,17 @@ const clear = () => {
     <div class="space-y-3">
       <div class="space-y-2">
         <Label class="text-lg md:text-xl">👥 Participantes</Label>
-        <TagsInput v-model="participants">
+        <TagsInput
+          v-model="participants"
+          addOnPaste
+          @update:model-value="participants = cleanParticipants(participants)"
+        >
           <TagsInputItem v-for="item in participants" :key="item" :value="item">
             <TagsInputItemText />
             <TagsInputItemDelete />
           </TagsInputItem>
 
-          <TagsInputInput placeholder="Nick,Juanito,Gusgus..." @paste="handlePaste" />
+          <TagsInputInput placeholder="Nick,Juanito,Gusgus..." :max-length="20" />
         </TagsInput>
       </div>
 
@@ -101,10 +91,10 @@ const clear = () => {
   </section>
 
   <section v-if="winners.length" class="space-y-4">
-    <h2 class="text-lg md:text-xl font-bold">🎉 Ganadores</h2>
-    <div class="border p-4 rounded flex flex-col gap-2 justify-start items-center">
+    <h2 class="text-lg font-bold md:text-xl">🎉 Ganadores</h2>
+    <div class="flex flex-col items-center justify-start gap-2 p-4 border rounded">
       <template v-for="winner in winners" :key="winner">
-        <h3 class="font-medium text-lg text-center">
+        <h3 class="text-lg font-medium text-center">
           {{ winner }}
         </h3>
       </template>

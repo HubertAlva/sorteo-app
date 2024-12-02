@@ -23,9 +23,9 @@ async function stopFireworks() {
 </script>
 
 <template>
-  <main class="w-full min-h-dvh flex justify-center items-center">
+  <main class="flex items-center justify-center w-full min-h-dvh">
     <article
-      class="max-w-lg px-4 md:px-8 py-8 border rounded-lg space-y-8 z-50 bg-slate-950/75 backdrop-blur-sm m-4 w-full"
+      class="z-50 w-full max-w-lg px-4 py-8 m-4 space-y-8 border rounded-lg md:px-8 bg-slate-950/75 backdrop-blur-sm"
     >
       <Header />
 
