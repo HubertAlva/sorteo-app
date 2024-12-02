@@ -23,10 +23,11 @@ async function stopFireworks() {
 </script>
 
 <template>
-  <main class="w-full min-h-dvh">
+  <main class="w-full min-h-dvh flex justify-center items-center">
     <article
-      class="max-w-lg mx-auto px-4 md:px-8 py-8 border rounded-lg space-y-8 z-50 absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-slate-950/75 backdrop-blur-sm"
+      class="max-w-lg px-4 md:px-8 py-8 border rounded-lg space-y-8 z-50 bg-slate-950/75 backdrop-blur-sm m-4 w-full"
     >
+      <!-- class="max-w-lg mx-auto px-4 md:px-8 py-8 border rounded-lg space-y-8 z-50 absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-slate-950/75 backdrop-blur-sm" -->
       <Header />
 
       <Main @winners-announced="startFireworks" @clear="stopFireworks" />
@@ -48,13 +49,3 @@ async function stopFireworks() {
     />
   </main>
 </template>
-
-<style scoped>
-article {
-  width: calc(100% - 2rem);
-
-  @media (min-width: 768px) {
-    width: 100%;
-  }
-}
-</style>
