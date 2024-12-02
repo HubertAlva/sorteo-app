@@ -90,14 +90,22 @@ const cleanParticipants = (participants: string[]) => participants.filter((p) =>
     <Button class="w-full" @click="getWinners()"> Sortear </Button>
   </section>
 
-  <section v-if="winners.length" class="space-y-4">
+  <section v-if="winners.length" class="space-y-6">
     <h2 class="text-lg font-bold md:text-xl">🎉 Ganadores</h2>
-    <div class="flex flex-col items-center justify-start gap-2 p-4 border rounded">
-      <template v-for="winner in winners" :key="winner">
-        <h3 class="text-lg font-medium text-center">
-          {{ winner }}
-        </h3>
-      </template>
+    <div class="relative">
+      <div
+        class="relative z-20 flex flex-col items-center justify-start overflow-hidden border rounded bg-slate-950"
+      >
+        <template v-for="winner in winners" :key="winner">
+          <h3 class="w-full px-4 py-1 text-lg font-medium text-center hover:bg-muted">
+            {{ winner }}
+          </h3>
+        </template>
+      </div>
+
+      <div
+        class="absolute z-10 rounded -inset-1 blur-sm bg-gradient-to-br from-pink-500 to-blue-500 animate-pulse"
+      ></div>
     </div>
   </section>
 
